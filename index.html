@@ -1,0 +1,732 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React Router Lecture</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<!-- <link rel="stylesheet" href="css/theme/black.css"> -->
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<!-- <link rel="stylesheet" href="css/theme/white.css" id="theme"> -->
+
+		<!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+		<style>
+			a.small { font-size: 0.7em !important }
+			p.small { font-size: 1em !important }
+			.left { width: 100%; text-align: left; }
+			.right { width: 100%; text-align: right; }
+			.router-red { color: rgb(202, 68, 66); }
+			h1 span.router-red {
+				text-shadow: rgb(250, 82, 74) 0px 1px 0px,
+					rgb(250, 82, 74) 0px 2px 0px,
+					rgb(250, 82, 74) 0px 3px 0px,
+					rgb(250, 82, 74) 0px 4px 0px;
+			}
+			.reveal pre { font-size: 1.0em; width: 100%; }
+            .reveal section p { font-size: 1.2em; }
+            .reveal section ul { font-size: 1.2em; }
+            .reveal section ul.small { font-size: 1.0em; }
+			.reveal section pre code { font-size: 0.75em; line-height: 1.2 }
+			.reveal section pre code.small { font-size: 0.65em; line-height: 1.2 }
+			.reveal pre code mark { background-color: rgb(202, 68, 66); color: #fff }
+			.reveal section ul li sup { font-size: 0.4em; }
+            .reveal ::selection { background-color: rgb(202, 68, 66); }
+            .reveal a { color: rgb(202, 68, 66) }
+            .reveal a:hover { color: rgb(250, 82, 74) }
+            .reveal section p.link-over-code { position: absolute; bottom: 0; margin: 0; padding: 0; line-height: 1.2em; fill: rgb(202, 68, 66); }
+            .reveal section p.link-over-code > a { margin: 0 10px 0 0; }
+            .reveal section p.link-over-code > a::before { content: url(./assets/router.svg); margin-right: 15px; }
+            .reveal section a.inline::before { content: url(./assets/router.svg); margin-right: 15px; }
+            .reveal section .fragment.no-init-space { display: none }
+            .reveal section .fragment.no-init-space.visible { display: inline-block }
+        
+			@font-face { font-family: LeagueGothicCyrillic; src: url(./assets/LeagueGothicCyrillic.ttf) }
+            .cyrillic { font-family: LeagueGothicCyrillic !important }
+            .error { color: rgb(250, 82, 74) }
+            .comment { color: rgb(127, 159, 127)}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><p>history.push(<span class="router-red">'/start'</span>);</p></section>
+				<section
+					data-background="assets/quest.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"></section>
+				<section
+					data-background-video="assets/mynameis.mp4"
+					data-background-size="cover"
+					data-autoplay></section>
+				<section
+					data-background="assets/router_guys.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"></section>
+				<section data-background="assets/bg_routes.jpg">
+					<h1 class="left"><span class="router-red">React Router</span></h1>
+					<br><br><br>
+					<h2 class="right">performed by</h2>
+					<h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
+				</section>
+				<section>
+					<h1>A concept of a Router</h1>
+					<p class="fragment">What is a Router?</p>
+					<p class="fragment">Why do we need it?</p>
+				</section>
+				<section>
+					<h1>A concept of a Router</h1>
+					<p>In Web Development</p>
+					<p><span class="router-red">Routing</span> is a process of matching of a <span class="router-red">URL</span> to a <span class="router-red">View</span></p>
+				</section>
+				<section>
+					<h1>A concept of a Router</h1>
+					<p>In Single Page Applications (SPAs)
+					<p class="left"><span class="router-red">View</span> is a set of components being rendered</p>
+					<p class="left"><span class="router-red">Router</span> dynamically loads components and changes what's displayed in the Browser as user navigates the page.</p>
+					<p class="left fragment"><span class="router-red">P. S.</span> Without reloading the page</p>
+					<p class="left fragment"><span class="router-red">P. P. S.</span> Because it's SPA</p>
+				</section>
+				<section
+					data-background="assets/router_basics_1.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_2.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_3.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_4.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_5.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_6.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section
+					data-background="assets/router_basics_7.png"
+					data-background-size="contain"
+					data-background-repeat="norepeat"
+					data-background-color="white"></section>
+				<section>
+					<h2>Using a Router allows to</h2>
+					<ul>
+						<li>Keep UI in sync with the URL</li>
+						<li>Bookmark the individual SPA pages</li>
+						<li>Use the Browser history, Back/Forward buttons</li>
+					</ul>
+				</section>
+				<section>
+					<h1>React Router</h1>
+					<p><span class="router-red">React</span> isn't a framework, it's a library.</p>
+					<p>Therefore, it doesn't solve all an application's needs.</p>
+					<p class="fragment">It does a great job at creating components and managing state, but creating a more complex SPA requires additional libraries.</p>
+				</section>
+				<section>
+					<h1>React Router</h1>
+					<p><span class="router-red">React Router</span> is an external library that manages navigation and rendering of components in the React applications</p>
+				</section>
+				<section>
+					<h1>React Router <span class="router-red">v4</span></h1>
+					<p>First thing to check when looking for a documentation,<br>
+						an article or a solution at StackOverflow,<br>
+						it that it is about React Router <span class="router-red">v4</span>.</p>
+				</section>
+				<section style="width: 100%;">
+					<h1>React Router <span class="router-red">v4</span></h1>
+					<ul>
+						<li>Way different in its Philosophy and mental model</li>
+						<li>Dynamic Routing, no static centralized routing configuration</li>
+						<li>Natural Nesting Routes, Code Splitting</li>
+						<li>First class React Native support</li>
+						<li>Virtually the entire API is <span class="router-red">Just Components <sup>TM</sup></span></li>
+					</ul>
+					<p class="right fragment"><a class="small" href="https://reacttraining.com/react-router/core/guides/philosophy">https://reacttraining.com/react-router/core/guides/philosophy</a></p>
+				</section>
+				<section>
+					<img src="assets/react_training_site.png">
+					<p class="right"><a class="small" href="https://reacttraining.com/react-router/">https://reacttraining.com/react-router/</a></p>
+				</section>
+				<section>
+					<h1>React Router Packages</h1>
+					<ul class="small">
+						<li>Web <span class="fragment">&ndash; <span class="router-red">react-router-dom</span> package, used for Web Browser</span></li>
+						<li>Native <span class="fragment">&ndash; <span class="router-red">react-router-native</span> package, used for React Native</span></li>
+						<li>Core <span class="fragment">&ndash; <span class="router-red">react-router</span> package, dependency, never used directly</span></li>
+					</ul>
+				</section>
+				<section>
+						<p>React Router is not included in React by default,</p>
+						<p>so you need to install it on top of React itself:</p>
+						<pre><code class="no-highlight" data-trim data-noescape>npm install --save react
+npm install --save react-dom
+<mark>npm install --save react-router-dom</mark></code></pre>
+				</section>
+				<section>
+						<p>It's not even included in Create React App by default:</p>
+						<pre><code class="no-highlight" data-trim data-noescape>npm install -g create-react-app
+create-react-app my-app
+cd my-app
+<mark>npm install --save react-router-dom</mark></code></pre>
+                </section>
+                <section>
+                    <h1>Basic Components</h1>
+                    <p>There are three types of components in React Router:</p>
+                    <ul>
+                        <li class="fragment"><span class="router-red">Router</span> components</li>
+                        <li class="fragment"><span class="router-red">Route matching</span> components</li>
+                        <li class="fragment"><span class="router-red">Navigation</span> components</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Router compenents</h2>
+                </section>
+				<section>
+					<h3 class="left">Browser related Router types:</h3>
+					<ul class="left small">
+						<li>BrowserRouter <span class="fragment">&ndash; for modern browsers that support HTML5 History API</span></li>
+						<li>HashRouter <span class="fragment">&ndash; for legacy browsers (uses window.location.hash)</span></li>
+					</ul>
+					<br><br>
+					<div class="fragment left">
+						<h3>Router types not related to browsers:</h3>
+						<ul class="small">
+							<li>MemoryRouter <span class="fragment">&ndash; for Testing or non-DOM envs like React-Native</span></li>
+							<li>StaticRouter <span class="fragment">&ndash; for Server-Side Rendering</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<p class="left" style="padding: 0; margin: 0">BrowserRouter</p>
+					<p class="left" style="padding: 0; margin: 0"><img style="margin: 0" src="assets/browser-router.png"></p>
+					<pre style="padding: 0; margin: 0"><code class="js">import { BrowserRouter } from 'react-router-dom';</code></pre>
+					<p class="left" style="padding: 0; margin: 1em 0 0 0">HashRouter</p>
+					<p class="left" style="padding: 0; margin: 0"><img src="assets/hash-router.png"></p>
+					<pre style="padding: 0; margin: 0"><code class="js">import { HashRouter } from 'react-router-dom';</code></pre>
+				</section>
+				<section>
+					<p class="small">BrowserRouter requires a default SPA route to be configured on Server.</p>
+					<p class="small">Otherwise here's what's happening:</p>
+					<img src="assets/browser-router-on-static.gif" style="width: 100%">
+				</section>
+				<section>
+					<p class="small">Default SPA route on Express server</p>
+					<pre><code class="js small">const express = require('express');
+const path = require('path');
+
+const app = express();
+
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.get('*', (req, res) => { // SPA default route
+	res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
+app.listen(3000);</code></pre>
+				</section>
+				<section>
+					<p class="small">Default SPA route on Webpack Dev Server</p>
+					<pre><code class="js small" data-noescape>const path = require('path');
+
+module.exports = {
+    devServer: {
+        inline: true,
+        contentBase: './',
+        historyApiFallback: {   // SPA default route
+          index: 'index.html'
+        }
+    },
+};</code></pre>
+				</section>
+				<section>
+					<p>HashRouter is the fallback in case<br>there is no control of Server side or static HTML.</p>
+					<p class="fragment">Like GitHub Pages for example.</p>
+					<p class="fragment">Or this presentation.</p>
+				</section>
+				<section>
+					<p>HashRouter on Static Server</p>
+					<img src="assets/hash-router-on-static.gif" style="width: 100%">
+				</section>
+				<section>
+                    <p>Importing a Router component:</p>
+                    <pre><code class="js" data-noescape>import { BrowserRouter } from 'react-router-dom';</code></pre>
+                    <pre><code class="js" data-noescape>import { HashRouter } from 'react-router-dom';</code></pre>
+                    <p>Renaming to Router on import:</p>
+                    <pre><code class="js" data-noescape>import { BrowserRouter as Router } from 'react-router-dom';</code></pre>
+                    <pre><code class="js" data-noescape>import { HashRouter as Router } from 'react-router-dom';</code></pre>
+                </section>
+                <section>
+                    <h3>Coming Soon</h3>
+                    We'll take another look at<br>BrowserRouter & HashRouter<br>after we're familiar with other basic components
+                </section>
+                <section>
+                    <h2>Route matching components</h2>
+                    <p>There are two route matching components:</p>
+                    <ul>
+                        <li>Route</li>
+                        <li>Switch</li>
+                    </ul>
+                </section>
+                <section>
+                    <p>Importing the Route matching components</p>
+                    <pre><code class="js" data-noescape>import { Route } from 'react-router-dom';</code></pre>
+                    <pre><code class="js" data-noescape>import { Route, Switch } from 'react-router-dom';</code></pre>
+                    <pre><code class="js" data-noescape>import { BrowserRouter, Route, Switch } from 'react-router-dom';</code></pre>
+                </section>
+                <section>
+                    <h2>Route matching</h2>
+                    <ul>
+                        <li class="fragment">Route matching is done by comparing a<br>&lt;Route <span class="router-red">path</span>&gt; prop to the current <span class="router-red">location.pathname</span>.</li>
+                        <li class="fragment">When a &lt;Route&gt; matches it will render its <span class="router-red">content</span><br>and when it does not match, it will render <span class="router-red">null</span>.</li>
+                        <li class="fragment">A &lt;Route&gt; with <span class="router-red">no path</span> will <span class="router-red">always</span> match.</li>
+                    </ul>
+                </section>
+                <section style="padding: 0; margin: 0;">
+                    <h2>Route matching</h2>
+                    <pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// when location.pathname = '/about'
+&lt;Route path='/about' component={About}/&gt;      // renders &lt;About/&gt;
+&lt;Route path='/contact' component={Contact}/&gt;  // renders null
+&lt;Route component={Always}/&gt;                   // renders &lt;Always/&gt;
+</code></pre>
+                </section>
+                <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+const Hello = () => (<h1>Hello, World!</h1>);
+
+const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;Route path="/" component={Hello} /&gt;
+    &lt;/BrowserRouter&gt;
+);
+
+render(<App />, document.getElementById('root'));</code></pre>
+                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8000/" target="_blank">Example #0</a></p>
+                </section>
+                <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// A &lt;Router&gt; may have only one child element
+...
+const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;Route path="/" component={Home} /&gt;
+        &lt;Route path="/about" component={About} /&gt;
+    &lt;/BrowserRouter&gt;
+);
+...</code></pre>
+                    <pre style="padding: 0; margin: 0;"><code class="no-highlight error" style="max-height: none;">Uncaught Error: A &lt;Router&gt; may have only one child element
+at invariant (browser.js:38)
+at Router.componentWillMount (Router.js:73)
+at callComponentWillMount (react-dom.development.js:6370)</code></pre>
+                </section>
+                <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// A &lt;Router&gt; may have only one child element
+...
+const App = () => (
+    &lt;BrowserRouter&gt;
+        <div>
+            &lt;Route path="/" component={Home} /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+        </div>
+    &lt;/BrowserRouter&gt;
+);
+...</code></pre>
+                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8001/" target="_blank">Example #1</a></p>
+                </section>
+                <section>
+                    <h3>Inclusive Routing (v4 default)</h3>
+                    <div style="position: relative">
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">// A &lt;Router&gt; may have only one child element
+...
+const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;div&gt;
+            &lt;Route <span class="fragment no-init-space router-red">exact </span>path="/" component={Home} /&gt;
+            &lt;Route path="/about" component={About} /&gt;
+        &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+);
+...</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8002/" target="_blank">Example #2</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Inclusive Routing use case</h3>
+                    <div style="position: relative">
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;div&gt;
+            &lt;header&gt;
+                &lt;Route path="/user" component={UserMenu} /&gt;
+            &lt;/header&gt;
+            &lt;main&gt;
+                &lt;Route exact path="/" component={Home} /&gt;
+                &lt;Route path="/user" component={UserContent} /&gt;
+            &lt;/main&gt;
+        &lt;/div&gt;
+    &lt;/BrowserRouter&gt;
+);</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8003/" target="_blank">Example #3</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Exclusive Routing</h3>
+                    <div style="position: relative">
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;" contenteditable>import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;Switch&gt;
+            &lt;Route path="/users/add" component={UsersAdd} /&gt;
+            &lt;Route path="/users" component={Users} /&gt;
+            &lt;Route path="/" component={Home} /&gt;
+        &lt;/Switch&gt;
+    &lt;/BrowserRouter&gt;
+);</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8004/" target="_blank">Example #4</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h2>Navigation components</h2>
+                    <ul>
+                        <li>Link</li>
+                        <li>NavLink</li>
+                        <li>Redirect</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Link</h2>
+                    <p class="left small">&lt;Link&gt; component is used to create links in your application</p>
+                    <pre><code class="js">&lt;Link to='/'&gt;Home&lt;/Link&gt;</code></pre>
+                    <p class="left small">When a &lt;Link&gt; is rendered, an &lt;a&gt; will be rendered in HTML</p>
+                    <pre><code class="html"><a href="/">Home</a></code></pre>
+                    <p class="left small">Now we are ready to revisit our BrowserRouter & HashRouter friends!</p>
+                </section>
+                <section>
+                    <ul>
+                        <li>BrowserRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8005/" target="_blank">Example #5</a></li>
+                        <li>HashRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8006/" target="_blank">Example #6</a></li>
+                        <li>BrowserRouter on a Dynamic Server <a class="small inline" href="http://127.0.0.1:8007/" target="_blank">Example #7</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <div style="position: relative">
+                        <p class="left small">&lt;Link&gt; to object</p>
+                    <pre><code class="js">&lt;Link to={{
+    pathname: '/about',        // A string representing the path to link to
+    search: '?what=company',   // A string represenation of query parameters
+    hash: '#sub-section',      // A hash to put in the URL
+    state: { fromHome: true }  // State to persist to the location
+}}&gt;
+    Home
+&lt;/Link&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8008/" target="_blank">Example #8</a></p>
+                    </div>
+                </section>
+                <section>
+                    <div style="position: relative">
+                        <p class="left small">&lt;Link replace&gt;</p>
+                        <p class="left small">When true, clicking the link will replace the current entry in the history stack instead of adding a new one.</p>
+                        <pre><code class="js">&lt;Link to='/about' replace&gt;Home&lt;/Link&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8009/" target="_blank">Example #9</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3>NavLink</h2>
+                    <p class="left small">&lt;NavLink&gt; is a special type of &lt;Link&gt; that can style itself as “active” when its to prop matches the current location</p>
+                    <div style="position: relative">
+                        <pre><code class="no-highlight" data-noescape><span class="comment">// when location.pathname = '/about'</span>
+&lt;NavLink to="/about"&gt;About&lt;/NavLink&gt;  <span class="comment">// 'active' class is added by default</span>
+&lt;NavLink to="/about" <span class="router-red">activeClassName</span>="special"&gt;About&lt;/NavLink&gt;
+&lt;NavLink to="/about" <span class="router-red">activeStyle</span>={{
+    fontWeight: bold,
+    color: orange
+}}&gt;About&lt;/NavLink&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8010/" target="_blank">Example #10</a></p>
+                    </div>
+                </section>
+                <section>
+                    <p class="left small">&lt;NavLink&gt; is analyses its current location, just like &lt;Route&gt; does.<br>Thus the same caveats:</p>
+                    <div style="position: relative">
+                        <pre><code class="no-highlight"><nav>
+    &lt;NavLink to="/"&gt;Home&lt;/NavLink&gt;
+    &lt;NavLink to="/about"&gt;About&lt;/NavLink&gt;
+    &lt;NavLink to="/contacts"&gt;Contacts&lt;/NavLink&gt;
+</nav>
+&lt;Switch>
+    &lt;Route exact path="/" component={Home} /&gt;
+    &lt;Route path="/about" component={About} /&gt;
+    &lt;Route path="/contacts" component={Contacts} /&gt;
+&lt;/Switch&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8011/" target="_blank">Example #11</a></p>
+                    </div>
+                </section>
+                <section>
+                    <div style="position: relative">
+                        <p class="small left">&lt;NavLink <span class="router-red">exact</span>&gt; and &lt;NavLink <span class="router-red">strict</span>&gt;</p>
+                        <pre><code class="no-highlight" data-noescape>&lt;NavLink <span class="router-red">exact</span> to="/"&gt;Home&lt;/NavLink&gt;
+&lt;Route <span class="router-red">exact</span> to="/"&gt;Home&lt;/NavLink&gt;</code></pre>
+                        <pre><code class="no-highlight" data-noescape>&lt;NavLink <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;
+&lt;Route <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8012/" target="_blank">Example #12</a></p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Redirect</h2>
+                    <p class="left small">When &lt;Redirect&gt; is rendered it navigates to a new location.<br>Current location is replaced in the history stack (replace by default)</p>
+                    <div style="position: relative">
+                        <pre><code class="js" data-noescape>&lt;Redirect to="/about" /&gt;</code></pre>
+                        <pre><code class="js" data-noescape>&lt;Redirect to={{
+    pathname: '/login',
+    search: '?utm=your+face',
+    state: { from: currentLocation }
+}}&gt;</code></pre>
+                            
+                    </div>
+                </section>
+                <section>
+                    <p class="small left">&lt;Redirect from&gt; within a Switch</p>
+                    <pre><code class="js" data-noescape>&lt;Switch&gt;
+    &lt;Route path="/new" component={New} /&gt;
+    &lt;Redirect from="/old" to="/new"&gt;
+&lt;/Switch&gt;</code></pre>
+                    <p class="small left">&lt;Redirect exact&gt; and  &lt;Redirect strict&gt;</p>
+                    <pre><code class="js" data-noescape>&lt;Switch&gt;
+    &lt;Route path="/new" component={New} /&gt;
+    &lt;Redirect exact strict from="/old/path/" to="/new"&gt;
+&lt;/Switch&gt;</code></pre>
+                </section>
+                <section>
+                    <p class="small left">Override the default repalce</p>
+                    <pre><code class="js" data-noescape>&lt;Redirect push to="/about"&gt;About&lt;/Redirect&gt;</code></pre>
+                </section>
+                <section>
+                    <ul>
+                        <li>Redirect from Legacy URL <a class="small inline" href="http://127.0.0.1:8013/" target="_blank">Example #13</a></li>
+                        <li>Not Found (404) page using Redirect <a class="small inline" href="http://127.0.0.1:8014/" target="_blank">Example #14</a></li>
+                        <li>Not Found page using Route with no path <a class="small inline" href="http://127.0.0.1:8015/" target="_blank">Example #15</a></li>
+                        <li>Not Found page using Route with * path <a class="small inline" href="http://127.0.0.1:8016/" target="_blank">Example #16</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Route render methods and props</h2>
+                </section>
+                <section>
+                    <h3>Route render methods</h3>
+                    <p class="small">There are 3 ways to render something with a &lt;Route&gt;:</p>
+                    <ul>
+                        <li>&lt;Route <span class="router-red">component</span>&gt;</li>
+                        <li>&lt;Route <span class="router-red">render</span>&gt;</li>
+                        <li>&lt;Route <span class="router-red">children</span>&gt;</li>
+                    </ul>
+                    <p class="small left">P.S. You'll have to choose</p>
+                </section>
+                <section>
+                    <h3>Route props</h3>
+                    <p class="small">All the 3 render methods will be passed the same 3 route props:</p>
+                    <ul>
+                        <li>match</li>
+                        <li>location</li>
+                        <li>history</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>match</h4>
+                    <p class="small left">object contains information about how a &lt;Route path&gt; matched the URL.</p>
+                    <pre><code class="js">props: {
+    match: {
+        path: '/about/:name', // The path pattern used to match.
+        url: '/about/joe',    // The matched portion of the URL.
+        isExact: true,        // true if the entire URL was matched.
+        params: {             // Key/value pairs parsed from the URL,
+            name: 'joe'       // corresponding to the dynamic segments
+        }                     // of the path
+                          
+    }
+}</code></pre>
+                </section>
+                <section>
+                    <h4>location</h4>
+                    <p class="small left">object contains current location and passed state</p>
+                    <pre><code class="js">props: {
+    location: {
+        key: 'ac3df4',                   // not with HashHistory!
+        pathname: '/somewhere'
+        search: '?some=search-string',
+        hash: '#howdy',
+        state: {
+            [userDefined]: true
+        }
+    }
+}</code></pre>
+                </section>
+
+                <section>
+                    <h4>history</h4>
+                    <p class="small left">object refers to the history package, which is one of only 2 major dependencies of React Router (besides React itself), and which provides several different implementations for managing session history in JavaScript in various environments:</p>
+                    <ul>
+                        <li>Browser history</li>
+                        <li>Hash history</li>
+                        <li>Memory history</li>
+                    </ul>
+                    <p class="small right"><a href="https://github.com/ReactTraining/history">https://github.com/ReactTraining/history</a></p>
+                </section>
+                <section>
+                    <h4>history</h4>
+                    <pre><code class="js" style="max-height: none;">history: {
+    length: 10              // The number of entries in the history stack
+    action: 'PUSH'          // The current action (PUSH, REPLACE, or POP)
+    location: {}            // The current location object
+    push(path, [state])     // Pushes a new entry onto the history stack
+    replace(path, [state])  // Replaces the current entry on the history stack
+    go(n)                   // Moves the pointer in the history stack by n entries
+    goBack()                // Equivalent to go(-1)
+    goForward()             // Equivalent to go(1)
+    block(prompt)           // Prevents navigation (see the history docs)
+}</code></pre>
+                </section>
+                <section>
+                    <p>&lt;Route component&gt;</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">&lt;Route path="/user/:username" component={User}/&gt;
+
+const User = ({ match }) => {
+    return <h1>Hello {match.params.username}!</h1>
+}</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8017/" target="_blank">Example #17</a></p>
+                    </div>
+                </section>
+                <section>
+                    <p class="small left">Custom match parameters</p>
+                    <pre><code class="js" style="max-height: none;">// Set custom match parameters in the Route
+&lt;Route path="/:company/:division" component={About}/&gt;
+
+// Access the value in component like so:
+<div>About {match.params.division} division of {match.params.company}</code></pre>
+                    <p class="small left">path can be any valid URL path that path-to-regexp understands.</p>
+                    <p class="small right"><a href="https://www.npmjs.com/package/path-to-regexp">https://www.npmjs.com/package/path-to-regexp</a></p>
+                </section>
+                <section>
+                    <p class="small left">Custom match parameters support regexp matches</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">/optional/:param?               // /optional, /optional/foo
+/optional/:param*               //  /optional, /optional/foo/, optional/foo/bar
+/optional/:param+               //  /optional/foo/, optional/foo/bar
+/number/(\d+)/	                //  /number/1, 123, 12345
+/number/(\d{1,3})/              //  /number/123
+/phone/(\d{3})-(\d{3})-(\d{4})	//  /phone/067-123-4567
+/date/(\d{2}-\d{2}-\d{4})       //  /date/31/12/2017 or /date/31/21/17, notice the common parethesis</code></pre>
+                    </div>
+                    <p class="small right"><a href="https://pshrmn.github.io/route-tester/">https://pshrmn.github.io/route-tester/</a></p>
+                </section>
+
+
+
+                <section>
+                    <p>&lt;Route render&gt;</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">// Inline rendering
+&lt;Route path="/home" render={() => <div>Home</div>}/&gt;
+
+// Wrapping, passing data
+const BooksList = ({ books }) => (<ul>
+    {books.map(book => (<li key={book.id}>{book.title}</li>))}
+</ul>);
+
+const BooksListWithDataPassed = (props) => {
+    const books = [ { id: 1, title: 'bukvar'}, ... ];       // data
+    return (&lt;BooksList {...props} books={books} /&gt;);
+}
+
+&lt;Route path="/books" render={BooksListWithDataPassed} /&gt;
+</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8018/" target="_blank">Example #18</a></p>
+                    </div>
+                </section>
+                <section>
+                    <p>&lt;Route children&gt;</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">// children is rendered always, but when it didn't match, match is null
+const RenderMeAnyway = ({ match }) => (
+    match
+        ? (<div>I matched!</div>)
+        : (<div>I didn't match, but still rendered</div>)
+);
+    
+&lt;Route path="/match" children={RenderMeAnyway} /&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8019/" target="_blank">Example #19</a></p>
+                    </div>
+                </section>
+                <section>
+                    <p>Protected Route</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">const Login = () => (<div>You must log in</div>);
+const Admin = () => (<div>Welcome to admin zone</div>);
+
+const ProtectedRoute = (props) => (
+    authService.checkAuth()
+        ? (&lt;Admin {...props} /&gt;)
+        : (&lt;Redirect to="/" /&gt;)
+);
+
+const App = () => (
+    &lt;Router&gt;
+        &lt;Route exact path="/" component={Login} /&gt;
+        &lt;Route path="/admin" render={ProtectedRoute}/&gt;
+    &lt;/Router&gt;
+);</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8020/" target="_blank">Example #20</a></p>
+                    </div>
+                </section></code></pre>
+
+
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+	
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+				],
+				history: true,
+				width: "100%",
+				// height: "100%",
+			});
+		</script>
+	</body>
+</html>
