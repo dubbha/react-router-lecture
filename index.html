@@ -46,10 +46,13 @@
 			.reveal section ul li sup { font-size: 0.4em; }
             .reveal ::selection { background-color: rgb(202, 68, 66); }
             .reveal a { color: rgb(202, 68, 66) }
-            .reveal a:hover { color: rgb(250, 82, 74) }
+            .reveal a.invert { color: rgb(255, 255, 255) }
+            .reveal a:hover, .reveal a.invert:hover { color: rgb(250, 82, 74) }
             .reveal section p.link-over-code { position: absolute; bottom: 0; margin: 0; padding: 0; line-height: 1.2em; fill: rgb(202, 68, 66); }
             .reveal section p.link-over-code > a { margin: 0 10px 0 0; }
             .reveal section p.link-over-code > a::before { content: url(./assets/router.svg); margin-right: 15px; }
+            .reveal section p.link-over-code_level2 { margin-bottom: 1.3em }
+            .reveal section p.link-over-code_level3 { margin-bottom: 2.6em  }
             .reveal section a.inline::before { content: url(./assets/router.svg); margin-right: 15px; }
             .reveal section .fragment.no-init-space { display: none }
             .reveal section .fragment.no-init-space.visible { display: inline-block }
@@ -702,7 +705,113 @@ const App = () => (
 );</code></pre>
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8020/" target="_blank">Example #20</a></p>
                     </div>
-                </section></code></pre>
+                </section>
+                <section>
+                    <p>Nested Routes</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">const App = () => (
+    &lt;BrowserRouter&gt;
+        <div>
+            &lt;Route path="/tacos" component={Tacos}/&gt;
+        </div>
+    &lt;/BrowserRouter&gt;
+);
+
+const Tacos  = () => (
+    <div>
+        &lt;Route path="/tacos/carnitas" component={Carnitas} /&gt;
+    </div>
+);</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <p>Nested Routes with match</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">const App = () => (
+        &lt;BrowserRouter&gt;
+            <div>
+                &lt;Route path="/tacos" component={Tacos}/&gt;
+            </div>
+        &lt;/BrowserRouter&gt;
+    );
+    
+    const Tacos  = ({ match }) => (
+        <div>
+            &lt;Route path={match.url + '/carnitas'} component={Carnitas} /&gt;
+        </div>
+    );</code></pre>
+                    </div>
+                </section>
+                <section>
+                    <p>withRouter()</p>
+                    <p class="small left">The match, location and history props are only available to the component immediately rendered by Route. In case you need to them in a deeper level component you may either forward them down in props, or use withRouter. withRouter HOC will pass the closes Route's match, location, and history props to the wrapped component whenever it renders.</p>
+                </section>
+                <section>
+                    <p>withRouter()</p>
+                    <pre><code class="js" style="max-height: none;">import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+
+class ShowTheLocation extends Component {
+    render() {
+        const { match, location, history } = this.props
+
+        return (<div>You are now at {location.pathname}</div>);
+    }
+}
+    
+export default withRouter(ShowTheLocation);</code></pre>
+                </section>
+                <section>
+                    <p>Navigate programmatically</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+
+class UseHistory extends Component {
+    render() {
+        return (
+            &lt;button onClick={this.goAway}&gt;Go Away&lt;/button&gt;
+        );
+    }
+
+    goAway = () => this.props.history.push('/away');
+}
+    
+export default withRouter(ShowMatchUseHistory);</code></pre>
+                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8021/" target="_blank">Example #21</a></p>
+                </div>
+                </section>
+                <section>
+                    <p>Transition Animation</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+&lt;Route
+  render={({ location }) => (
+    &lt;TransitionGroup&gt;
+      &lt;CSSTransition key={location.key} classNames="fade" timeout={5000}&gt;
+        &lt;Switch location={location}&gt;
+          &lt;Route path="/" exact component={Home} /&gt;
+          &lt;Route path="/about" component={About} /&gt;
+        &lt;/Switch&gt;
+      &lt;/CSSTransition&gt;
+    &lt;/TransitionGroup&gt;
+  )}
+/&gt;</code></pre>
+                        <p class="right link-over-code right link-over-code_level3"><a class="small" href="http://127.0.0.1:8022/" target="_blank">Example #22</a></p>
+                        <p class="right link-over-code right link-over-code_level2"><a class="small" href="http://127.0.0.1:8023/" target="_blank">Example #23</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8024/" target="_blank">Example #24</a></p>
+                    </div>
+                </section>
+                <section data-background="assets/bg_routes.jpg">
+					<h1 class="left"><span class="router-red">Thank You</span></h1>
+                    <br><br><br>
+                    <h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
+                    <p class="small right">
+                        <a class="inline invert" href="https://github.com/dubbha/react-router-lecture" target="_blank">github.com/dubbha/react-router-lecture</a><br>
+                        <a class="inline invert" href="https://github.com/dubbha/react-router-examples" target="_blank">github.com/dubbha/react-router-examples</a>
+                    </p>
+				</section>
 
 
 
