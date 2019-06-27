@@ -36,6 +36,7 @@
 					rgb(250, 82, 74) 0px 3px 0px,
 					rgb(250, 82, 74) 0px 4px 0px;
 			}
+            h1 span.router-red sup { font-size: 0.85em; vertical-align: top; }
 			.reveal pre { font-size: 1.0em; width: 100%; }
             .reveal section p { font-size: 1.2em; }
             .reveal section ul { font-size: 1.2em; }
@@ -157,13 +158,13 @@
 					<p><span class="router-red">React Router</span> is an external library that manages navigation and rendering of components in the React applications</p>
 				</section>
 				<section>
-					<h1>React Router <span class="router-red">v4</span></h1>
+					<h1>React Router <span class="router-red">v4<sup>+</sup></span></h1>
 					<p>First thing to check when looking for a documentation,<br>
 						an article or a solution at StackOverflow,<br>
-						it that it is about React Router <span class="router-red">v4</span>.</p>
+						it that it is about React Router <span class="router-red">v4+</span>.</p>
 				</section>
 				<section style="width: 100%;">
-					<h1>React Router <span class="router-red">v4</span></h1>
+					<h1>React Router <span class="router-red">v4<sup>+</sup></span></h1>
 					<ul>
 						<li>Way different in its Philosophy and mental model</li>
 						<li>Dynamic Routing, no static centralized routing configuration</li>
@@ -172,7 +173,27 @@
 						<li>Virtually the entire API is <span class="router-red">Just Components <sup>TM</sup></span></li>
 					</ul>
 					<p class="right fragment"><a class="small" href="https://reacttraining.com/react-router/core/guides/philosophy">https://reacttraining.com/react-router/core/guides/philosophy</a></p>
+                </section>
+                
+
+                <section style="width: 100%;">
+                    <h1>React Router <span class="router-red">v5</span></h1>
+                    <ul>
+                        <li>Fully backwards compatible with v4</li>
+                        <li>Orignally meant to be released as v4.4</li>
+                        <li>Reason for a major version bump is a single character: ^</li>
+                        <li>Structural improvements like better support for React 16</li>
+                        <li>Some new features like using an array in &lt;Route path array&gt;</li>
+                    </ul>
+                    
+
+
+
+					<p class="right"><a class="small" href="https://reacttraining.com/blog/react-router-v5/">https://reacttraining.com/blog/react-router-v5/</a></p>
 				</section>
+
+
+
 				<section>
 					<img src="assets/react_training_site.png">
 					<p class="right"><a class="small" href="https://reacttraining.com/react-router/">https://reacttraining.com/react-router/</a></p>
@@ -362,7 +383,7 @@ const App = () => (
                     <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8001/" target="_blank">Example #1</a></p>
                 </section>
                 <section>
-                    <h3>Inclusive Routing (v4 default)</h3>
+                    <h3>Inclusive Routing (v4+ default)</h3>
                     <div style="position: relative">
                         <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">...
 const App = () => (
@@ -413,6 +434,22 @@ const App = () => (
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8004/" target="_blank">Example #4</a></p>
                     </div>
                 </section>
+
+                <section>
+                    <h3>Route path array (v5)</h3>
+                    <div style="position: relative">
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;" contenteditable>// Instead of this:
+&lt;Switch&gt;
+    &lt;Route path="/user" component={User} /&gt;
+    &lt;Route path="/profile" component={User} /&gt;
+&lt;/Switch&gt;</code></pre>
+                        <br/>
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;" contenteditable>// You can now just do this:
+&lt;Route path={['/user', '/profile']} component={User} /&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8005/user" target="_blank">Example #5</a></p>
+                    </div>
+                </section>
+
                 <section>
                     <h2>Navigation components</h2>
                     <ul>
