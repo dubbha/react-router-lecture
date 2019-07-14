@@ -14,6 +14,13 @@
 		<!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
 
+        <!-- video prefetch -->
+        <link rel="prefetch" href="assets/mynameis.webm">
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16">
+
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -36,6 +43,7 @@
 					rgb(250, 82, 74) 0px 3px 0px,
 					rgb(250, 82, 74) 0px 4px 0px;
 			}
+            h1 span.router-red sup { font-size: 0.85em; vertical-align: top; }
 			.reveal pre { font-size: 1.0em; width: 100%; }
             .reveal section p { font-size: 1.2em; }
             .reveal section ul { font-size: 1.2em; }
@@ -72,7 +80,7 @@
 					data-background-size="contain"
 					data-background-repeat="norepeat"></section>
 				<section
-					data-background-video="assets/mynameis.mp4"
+					data-background-video="assets/mynameis.webm"
 					data-background-size="cover"
 					data-autoplay></section>
 				<section
@@ -157,13 +165,13 @@
 					<p><span class="router-red">React Router</span> is an external library that manages navigation and rendering of components in the React applications</p>
 				</section>
 				<section>
-					<h1>React Router <span class="router-red">v4</span></h1>
+					<h1>React Router <span class="router-red">v4<sup>+</sup></span></h1>
 					<p>First thing to check when looking for a documentation,<br>
 						an article or a solution at StackOverflow,<br>
-						it that it is about React Router <span class="router-red">v4</span>.</p>
+						it that it is about React Router <span class="router-red">v4+</span>.</p>
 				</section>
 				<section style="width: 100%;">
-					<h1>React Router <span class="router-red">v4</span></h1>
+					<h1>React Router <span class="router-red">v4<sup>+</sup></span></h1>
 					<ul>
 						<li>Way different in its Philosophy and mental model</li>
 						<li>Dynamic Routing, no static centralized routing configuration</li>
@@ -172,9 +180,29 @@
 						<li>Virtually the entire API is <span class="router-red">Just Components <sup>TM</sup></span></li>
 					</ul>
 					<p class="right fragment"><a class="small" href="https://reacttraining.com/react-router/core/guides/philosophy">https://reacttraining.com/react-router/core/guides/philosophy</a></p>
+                </section>
+                
+
+                <section style="width: 100%;">
+                    <h1>React Router <span class="router-red">v5</span></h1>
+                    <ul>
+                        <li>Fully backwards compatible with v4</li>
+                        <li>Orignally meant to be released as v4.4</li>
+                        <li>Reason for a major version bump is a single character: ^</li>
+                        <li>Structural improvements like better support for React 16</li>
+                        <li>Some new features like using an array in &lt;Route path array&gt;</li>
+                    </ul>
+                    
+
+
+
+					<p class="right"><a class="small" href="https://reacttraining.com/blog/react-router-v5/">https://reacttraining.com/blog/react-router-v5/</a></p>
 				</section>
+
+
+
 				<section>
-					<img src="assets/react_training_site.png">
+					<img src="assets/react_training_site.png" style="width: 100%; max-width: 100%; margin: 0;">
 					<p class="right"><a class="small" href="https://reacttraining.com/react-router/">https://reacttraining.com/react-router/</a></p>
 				</section>
 				<section>
@@ -209,7 +237,7 @@ cd my-app
                     </ul>
                 </section>
                 <section>
-                    <h2>Router compenents</h2>
+                    <h2>Router components</h2>
                 </section>
 				<section>
 					<h3 class="left">Browser related Router types:</h3>
@@ -249,7 +277,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('*', (req, res) => { // SPA default route
-	res.sendFile(path.join(__dirname, '../dist/index.html'));
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.listen(3000);</code></pre>
@@ -314,9 +342,9 @@ module.exports = {
                 <section style="padding: 0; margin: 0;">
                     <h2>Route matching</h2>
                     <pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// when location.pathname = '/about'
-&lt;Route path='/about' component={About}/&gt;      // renders &lt;About/&gt;
-&lt;Route path='/contact' component={Contact}/&gt;  // renders null
-&lt;Route component={Always}/&gt;                   // renders &lt;Always/&gt;
+&lt;Route path='/about' component={About} /&gt;      // renders &lt;About/&gt;
+&lt;Route path='/contact' component={Contact} /&gt;  // renders null
+&lt;Route component={Always} /&gt;                   // renders &lt;Always/&gt;
 </code></pre>
                 </section>
                 <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">import React from 'react';
@@ -332,10 +360,9 @@ const App = () => (
 );
 
 render(<App />, document.getElementById('root'));</code></pre>
-                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8000/" target="_blank">Example #0</a></p>
+                    <p class="right link-over-code"><a class="fragment small" href="http://127.0.0.1:8000/" target="_blank">Example #0</a></p>
                 </section>
-                <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// A &lt;Router&gt; may have only one child element
-...
+                <section style="padding: 0; margin: 0;"><p class="left small">A &lt;Router&gt; may have only one child element in <span class="router-red">v4</span></p><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">...
 const App = () => (
     &lt;BrowserRouter&gt;
         &lt;Route path="/" component={Home} /&gt;
@@ -348,8 +375,10 @@ at invariant (browser.js:38)
 at Router.componentWillMount (Router.js:73)
 at callComponentWillMount (react-dom.development.js:6370)</code></pre>
                 </section>
-                <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">// A &lt;Router&gt; may have only one child element
-...
+                <section style="padding: 0; margin: 0;"><p class="left small">Multiple &lt;Router&gt; children must be wrapped in <span class="router-red">v4</span> <span class="fragment" data-fragment-index="0">(they're OK in <span class="router-red">v5</span>)</span></p>
+                    <div style="position: relative">
+                        <div class="fragment fade-out" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="0">
+                            <pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">...
 const App = () => (
     &lt;BrowserRouter&gt;
         <div>
@@ -359,22 +388,31 @@ const App = () => (
     &lt;/BrowserRouter&gt;
 );
 ...</code></pre>
-                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8001/" target="_blank">Example #1</a></p>
+                        </div>
+                        <div class="fragment fade-in" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="0">
+                            <pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">...
+const App = () => (
+    &lt;BrowserRouter&gt;
+        &lt;Route path="/" component={Home} /&gt;
+        &lt;Route path="/about" component={About} /&gt;
+    &lt;/BrowserRouter&gt;
+);
+...</code></pre><p class="right link-over-code"><a class="small" href="http://127.0.0.1:8001/" target="_blank">Example #1</a></p>
+                        </div>
+                    </div>
                 </section>
                 <section>
-                    <h3>Inclusive Routing (v4 default)</h3>
+                    <h3>Inclusive Routing (v4+ default)</h3>
                     <div style="position: relative">
                         <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">...
 const App = () => (
     &lt;BrowserRouter&gt;
-        &lt;div&gt;
-            &lt;Route <span class="fragment no-init-space router-red">exact </span>path="/" component={Home} /&gt;
-            &lt;Route path="/about" component={About} /&gt;
-        &lt;/div&gt;
+        &lt;Route <span class="fragment no-init-space router-red" data-fragment-index="0">exact </span>path="/" component={Home} /&gt;
+        &lt;Route path="/about" component={About} /&gt;
     &lt;/BrowserRouter&gt;
 );
 ...</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8002/" target="_blank">Example #2</a></p>
+                        <p class="fragment right link-over-code" data-fragment-index="0"><a class="small" href="http://127.0.0.1:8002/" target="_blank">Example #2</a></p>
                     </div>
                 </section>
                 <section>
@@ -382,15 +420,13 @@ const App = () => (
                     <div style="position: relative">
                         <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">const App = () => (
     &lt;BrowserRouter&gt;
-        &lt;div&gt;
-            &lt;header&gt;
-                &lt;Route path="/user" component={UserMenu} /&gt;
-            &lt;/header&gt;
-            &lt;main&gt;
-                &lt;Route exact path="/" component={Home} /&gt;
-                &lt;Route path="/user" component={UserContent} /&gt;
-            &lt;/main&gt;
-        &lt;/div&gt;
+        &lt;header&gt;
+            &lt;Route path="/user" component={UserMenu} /&gt;
+        &lt;/header&gt;
+        &lt;main&gt;
+            &lt;Route exact path="/" component={Home} /&gt;
+            &lt;Route path="/user" component={UserContent} /&gt;
+        &lt;/main&gt;
     &lt;/BrowserRouter&gt;
 );</code></pre>
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8003/" target="_blank">Example #3</a></p>
@@ -399,7 +435,7 @@ const App = () => (
                 <section>
                     <h3>Exclusive Routing</h3>
                     <div style="position: relative">
-                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;" contenteditable>import { BrowserRouter, Route, Switch } from 'react-router-dom';
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;" contenteditable spellcheck="false">import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const App = () => (
     &lt;BrowserRouter&gt;
@@ -413,6 +449,21 @@ const App = () => (
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8004/" target="_blank">Example #4</a></p>
                     </div>
                 </section>
+
+                <section>
+                    <h3>Route path array (v5)</h3>
+                    <div style="position: relative">
+                        <pre style="padding: 0; margin: 0;"><code class="js" data-noescape style="max-height: none;">// Instead of this
+&lt;Switch&gt;
+    &lt;Route path="/user" component={User} /&gt;
+    &lt;Route path="/profile" component={User} /&gt;
+&lt;/Switch&gt;</code></pre>
+                        <pre style="padding: 0; margin: 30px 0 0;"><code class="js" data-noescape style="max-height: none;">// You can use an array in v5
+&lt;Route path={['/user', '/profile']} component={User} /&gt;</code></pre>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8005/user" target="_blank">Example #5</a></p>
+                    </div>
+                </section>
+
                 <section>
                     <h2>Navigation components</h2>
                     <ul>
@@ -431,9 +482,9 @@ const App = () => (
                 </section>
                 <section>
                     <ul>
-                        <li>BrowserRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8005/" target="_blank">Example #5</a></li>
-                        <li>HashRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8006/" target="_blank">Example #6</a></li>
-                        <li>BrowserRouter on a Dynamic Server <a class="small inline" href="http://127.0.0.1:8007/" target="_blank">Example #7</a></li>
+                        <li>BrowserRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8006/" target="_blank">Example #6</a></li>
+                        <li>HashRouter on a Static Page <a class="small inline" href="http://127.0.0.1:8007/" target="_blank">Example #7</a></li>
+                        <li>BrowserRouter on a Dynamic Server <a class="small inline" href="http://127.0.0.1:8008/" target="_blank">Example #8</a></li>
                     </ul>
                 </section>
                 <section>
@@ -447,7 +498,7 @@ const App = () => (
 }}&gt;
     Home
 &lt;/Link&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8008/" target="_blank">Example #8</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8009/" target="_blank">Example #9</a></p>
                     </div>
                 </section>
                 <section>
@@ -455,7 +506,7 @@ const App = () => (
                         <p class="left small">&lt;Link replace&gt;</p>
                         <p class="left small">When true, clicking the link will replace the current entry in the history stack instead of adding a new one.</p>
                         <pre><code class="js">&lt;Link to='/about' replace&gt;Home&lt;/Link&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8009/" target="_blank">Example #9</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8010/" target="_blank">Example #10</a></p>
                     </div>
                 </section>
                 <section>
@@ -469,7 +520,7 @@ const App = () => (
     fontWeight: bold,
     color: orange
 }}&gt;About&lt;/NavLink&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8010/" target="_blank">Example #10</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8011/" target="_blank">Example #11</a></p>
                     </div>
                 </section>
                 <section>
@@ -485,7 +536,7 @@ const App = () => (
     &lt;Route path="/about" component={About} /&gt;
     &lt;Route path="/contacts" component={Contacts} /&gt;
 &lt;/Switch&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8011/" target="_blank">Example #11</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8012/" target="_blank">Example #12</a></p>
                     </div>
                 </section>
                 <section>
@@ -495,7 +546,7 @@ const App = () => (
 &lt;Route <span class="router-red">exact</span> to="/"&gt;Home&lt;/NavLink&gt;</code></pre>
                         <pre><code class="no-highlight" data-noescape>&lt;NavLink <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;
 &lt;Route <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8012/" target="_blank">Example #12</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8013/" target="_blank">Example #13</a></p>
                     </div>
                 </section>
                 <section>
@@ -529,10 +580,10 @@ const App = () => (
                 </section>
                 <section>
                     <ul>
-                        <li>Redirect from Legacy URL <a class="small inline" href="http://127.0.0.1:8013/" target="_blank">Example #13</a></li>
-                        <li>Not Found (404) page using Redirect <a class="small inline" href="http://127.0.0.1:8014/" target="_blank">Example #14</a></li>
-                        <li>Not Found page using Route with no path <a class="small inline" href="http://127.0.0.1:8015/" target="_blank">Example #15</a></li>
-                        <li>Not Found page using Route with * path <a class="small inline" href="http://127.0.0.1:8016/" target="_blank">Example #16</a></li>
+                        <li>Redirect from Legacy URL <a class="small inline" href="http://127.0.0.1:8014/" target="_blank">Example #14</a></li>
+                        <li>Not Found (404) page using Redirect <a class="small inline" href="http://127.0.0.1:8015/" target="_blank">Example #15</a></li>
+                        <li>Not Found page using Route with no path <a class="small inline" href="http://127.0.0.1:8016/" target="_blank">Example #16</a></li>
+                        <li>Not Found page using Route with * path <a class="small inline" href="http://127.0.0.1:8017/" target="_blank">Example #17</a></li>
                     </ul>
                 </section>
                 <section>
@@ -620,7 +671,7 @@ const App = () => (
 const User = ({ match }) => {
     return <h1>Hello {match.params.username}!</h1>
 }</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8017/" target="_blank">Example #17</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8018/" target="_blank">Example #18</a></p>
                     </div>
                 </section>
                 <section>
@@ -669,7 +720,7 @@ const BooksListWithDataPassed = (props) => {
 
 &lt;Route path="/books" render={BooksListWithDataPassed} /&gt;
 </code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8018/" target="_blank">Example #18</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8019/" target="_blank">Example #19</a></p>
                     </div>
                 </section>
                 <section>
@@ -683,7 +734,7 @@ const RenderMeAnyway = ({ match }) => (
 );
     
 &lt;Route path="/match" children={RenderMeAnyway} /&gt;</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8019/" target="_blank">Example #19</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8020/match" target="_blank">Example #20</a></p>
                     </div>
                 </section>
                 <section>
@@ -704,7 +755,7 @@ const App = () => (
         &lt;Route path="/admin" render={ProtectedRoute}/&gt;
     &lt;/Router&gt;
 );</code></pre>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8020/" target="_blank">Example #20</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8021/" target="_blank">Example #21</a></p>
                     </div>
                 </section>
                 <section>
@@ -779,7 +830,7 @@ class UseHistory extends Component {
 }
     
 export default withRouter(ShowMatchUseHistory);</code></pre>
-                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8021/" target="_blank">Example #21</a></p>
+                    <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8022/" target="_blank">Example #22</a></p>
                 </div>
                 </section>
                 <section>
@@ -799,9 +850,9 @@ export default withRouter(ShowMatchUseHistory);</code></pre>
     &lt;/TransitionGroup&gt;
   )}
 /&gt;</code></pre>
-                        <p class="right link-over-code right link-over-code_level3"><a class="small" href="http://127.0.0.1:8022/" target="_blank">Example #22</a></p>
-                        <p class="right link-over-code right link-over-code_level2"><a class="small" href="http://127.0.0.1:8023/" target="_blank">Example #23</a></p>
-                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8024/" target="_blank">Example #24</a></p>
+                        <p class="right link-over-code right link-over-code_level3"><a class="small" href="http://127.0.0.1:8023/" target="_blank">Example #23</a></p>
+                        <p class="right link-over-code right link-over-code_level2"><a class="small" href="http://127.0.0.1:8024/" target="_blank">Example #24</a></p>
+                        <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8025/" target="_blank">Example #25</a></p>
                     </div>
                 </section>
                 <section data-background="assets/bg_routes.jpg">
