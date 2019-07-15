@@ -14,8 +14,9 @@
 		<!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
 
-        <!-- video prefetch -->
+        <!-- prefetch -->
         <link rel="prefetch" href="assets/mynameis.webm">
+        <link rel="prefetch" href="assets/LeagueGothicCyrillic.ttf">
 
         <!-- favicon -->
         <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">
@@ -76,7 +77,7 @@
 			<div class="slides">
 				<section><p>history.push(<span class="router-red">'/start'</span>);</p></section>
 				<section
-					data-background="assets/quest.png"
+					data-background-image="assets/quest.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"></section>
 				<section
@@ -84,10 +85,10 @@
 					data-background-size="cover"
 					data-autoplay></section>
 				<section
-					data-background="assets/router_guys.png"
+					data-background-image="assets/router_guys.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"></section>
-				<section data-background="assets/bg_routes.jpg">
+				<section data-background-image="assets/bg_routes.webp">
 					<h1 class="left"><span class="router-red">React Router</span></h1>
 					<br><br><br>
 					<h2 class="right">performed by</h2>
@@ -112,37 +113,37 @@
 					<p class="left fragment"><span class="router-red">P. P. S.</span> Because it's SPA</p>
 				</section>
 				<section
-					data-background="assets/router_basics_1.png"
+					data-background-image="assets/router_basics_1.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_2.png"
+					data-background-image="assets/router_basics_2.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_3.png"
+					data-background-image="assets/router_basics_3.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_4.png"
+					data-background-image="assets/router_basics_4.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_5.png"
+					data-background-image="assets/router_basics_5.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_6.png"
+					data-background-image="assets/router_basics_6.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section
-					data-background="assets/router_basics_7.png"
+					data-background-image="assets/router_basics_7.webp"
 					data-background-size="contain"
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
@@ -202,7 +203,7 @@
 
 
 				<section>
-					<img src="assets/react_training_site.png" style="width: 100%; max-width: 100%; margin: 0;">
+					<img src="assets/react_training_site.webp" style="width: 100%; max-width: 100%; margin: 0;">
 					<p class="right"><a class="small" href="https://reacttraining.com/react-router/">https://reacttraining.com/react-router/</a></p>
 				</section>
 				<section>
@@ -762,17 +763,13 @@ const App = () => (
                     <p>Nested Routes</p>
                     <div style="position: relative">
                         <pre><code class="js" style="max-height: none;">const App = () => (
-    &lt;BrowserRouter&gt;
-        <div>
-            &lt;Route path="/tacos" component={Tacos}/&gt;
-        </div>
-    &lt;/BrowserRouter&gt;
+    &lt;Router&gt;
+        &lt;Route path="/tacos" component={Tacos}/&gt;
+    &lt;/Router&gt;
 );
 
 const Tacos  = () => (
-    <div>
-        &lt;Route path="/tacos/carnitas" component={Carnitas} /&gt;
-    </div>
+    &lt;Route path="/tacos/carnitas" component={Carnitas} /&gt;
 );</code></pre>
                     </div>
                 </section>
@@ -780,18 +777,14 @@ const Tacos  = () => (
                     <p>Nested Routes with match</p>
                     <div style="position: relative">
                         <pre><code class="js" style="max-height: none;">const App = () => (
-        &lt;BrowserRouter&gt;
-            <div>
-                &lt;Route path="/tacos" component={Tacos}/&gt;
-            </div>
-        &lt;/BrowserRouter&gt;
-    );
+    &lt;Router&gt;
+        &lt;Route path="/tacos" component={Tacos}/&gt;
+    &lt;/Router&gt;
+);
     
-    const Tacos  = ({ match }) => (
-        <div>
-            &lt;Route path={match.url + '/carnitas'} component={Carnitas} /&gt;
-        </div>
-    );</code></pre>
+const Tacos  = ({ match }) => (
+    &lt;Route path={match.url + '/carnitas'} component={Carnitas} /&gt;
+);</code></pre>
                     </div>
                 </section>
                 <section>
@@ -820,13 +813,13 @@ export default withRouter(ShowTheLocation);</code></pre>
 import { withRouter } from 'react-router-dom';
 
 class UseHistory extends Component {
+    goAway = () => this.props.history.push('/away');
+
     render() {
         return (
             &lt;button onClick={this.goAway}&gt;Go Away&lt;/button&gt;
         );
     }
-
-    goAway = () => this.props.history.push('/away');
 }
     
 export default withRouter(ShowMatchUseHistory);</code></pre>
@@ -855,7 +848,7 @@ export default withRouter(ShowMatchUseHistory);</code></pre>
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8025/" target="_blank">Example #25</a></p>
                     </div>
                 </section>
-                <section data-background="assets/bg_routes.jpg">
+                <section data-background-image="assets/bg_routes.webp">
 					<h1 class="left"><span class="router-red">Thank You</span></h1>
                     <br><br><br>
                     <h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
