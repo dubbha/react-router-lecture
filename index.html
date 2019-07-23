@@ -95,17 +95,17 @@
 					<h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
 				</section>
 				<section>
-					<h1>A concept of a Router</h1>
+					<h1>Concept of a Router</h1>
 					<p class="fragment">What is a Router?</p>
 					<p class="fragment">Why do we need it?</p>
 				</section>
 				<section>
-					<h1>A concept of a Router</h1>
+					<h1>Concept of a Router</h1>
 					<p>In Web Development</p>
 					<p><span class="router-red">Routing</span> is a process of matching of a <span class="router-red">URL</span> to a <span class="router-red">View</span></p>
 				</section>
 				<section>
-					<h1>A concept of a Router</h1>
+					<h1>Concept of a Router</h1>
 					<p>In Single Page Applications (SPAs)
 					<p class="left"><span class="router-red">View</span> is a set of components being rendered</p>
 					<p class="left"><span class="router-red">Router</span> dynamically loads components and changes what's displayed in the Browser as user navigates the page.</p>
@@ -148,11 +148,11 @@
 					data-background-repeat="norepeat"
 					data-background-color="white"></section>
 				<section>
-					<h2>Using a Router allows to</h2>
+					<h2>Using Router allows to</h2>
 					<ul>
 						<li>Keep UI in sync with the URL</li>
-						<li>Bookmark the individual SPA pages</li>
-						<li>Use the Browser history, Back/Forward buttons</li>
+						<li>Bookmark individual SPA pages</li>
+						<li>Use Browser history, Back/Forward buttons</li>
 					</ul>
 				</section>
 				<section>
@@ -223,8 +223,7 @@ npm install --save react-dom
 				</section>
 				<section>
 						<p>It's not even included in Create React App by default:</p>
-						<pre><code class="no-highlight" data-trim data-noescape>npm install -g create-react-app
-create-react-app my-app
+						<pre><code class="no-highlight" data-trim data-noescape>npx create-react-app my-app
 cd my-app
 <mark>npm install --save react-router-dom</mark></code></pre>
                 </section>
@@ -665,7 +664,7 @@ const App = () => (
 }</code></pre>
                 </section>
                 <section>
-                    <p>&lt;Route component&gt;</p>
+                    <p>&lt;Route component&gt; with match parameter</p>
                     <div style="position: relative">
                         <pre><code class="js" style="max-height: none;">&lt;Route path="/user/:username" component={User}/&gt;
 
