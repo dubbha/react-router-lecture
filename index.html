@@ -82,7 +82,7 @@
 					data-background-repeat="norepeat"></section>
 				<section
 					data-background-video="assets/mynameis.webm"
-					data-background-size="cover"
+					data-background-size="contain"
 					data-autoplay></section>
 				<section
 					data-background-image="assets/router_guys.webp"
@@ -90,7 +90,7 @@
 					data-background-repeat="norepeat"></section>
 				<section data-background-image="assets/bg_routes.webp">
 					<h1 class="left"><span class="router-red">React Router</span></h1>
-					<br><br><br>
+					<br><br><br><br>
 					<h2 class="right">performed by</h2>
 					<h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
 				</section>
@@ -159,11 +159,13 @@
 					<h1>React Router</h1>
 					<p><span class="router-red">React</span> isn't a framework, it's a library.</p>
 					<p>Therefore, it doesn't solve all the application's needs.</p>
-					<p class="fragment">It does a great job at creating components and managing state, but creating a more complex SPA requires additional libraries.</p>
+					<p class="fragment">It does a great job at creating components and managing state,<br>
+                        but creating a more complex SPA requires additional libraries.</p>
 				</section>
 				<section>
 					<h1>React Router</h1>
-					<p><span class="router-red">React Router</span> is an external library that manages navigation and rendering of components in the React applications</p>
+					<p><span class="router-red">React Router</span> is an external library that manages navigation<br>
+                        and rendering of components in the React applications</p>
 				</section>
 				<section>
 					<h1>React Router <span class="router-red">v4<sup>+</sup></span></h1>
@@ -687,7 +689,7 @@ const User = ({ match }) => {
                 <section>
                     <p class="small left">Custom match parameters support regexp matches</p>
                     <div style="position: relative">
-                        <pre><code class="js" style="max-height: none;">/optional/:param?               // /optional, /optional/foo
+                        <pre><code class="js" style="max-height: none;">/optional/:param?               //  /optional, /optional/foo
 /optional/:param*               //  /optional, /optional/foo/, optional/foo/bar
 /optional/:param+               //  /optional/foo/, optional/foo/bar
 /number/(\d+)	                //  /number/1, 123, 12345
@@ -849,7 +851,7 @@ export default withRouter(ShowMatchUseHistory);</code></pre>
                 </section>
                 <section data-background-image="assets/bg_routes.webp">
 					<h1 class="left"><span class="router-red">Thank You</span></h1>
-                    <br><br><br>
+                    <br><br><br><br>
                     <h2 class="right">Oleksiy <span class="router-red cyrillic">Лёша</span> Dubovyk</h2>
                     <p class="small right">
                         <a class="inline invert" href="https://github.com/dubbha/react-router-lecture" target="_blank">github.com/dubbha/react-router-lecture</a><br>
