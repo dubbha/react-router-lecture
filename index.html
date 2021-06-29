@@ -347,6 +347,11 @@ module.exports = {
 &lt;Route path='/about' component={About} /&gt;      // renders &lt;About/&gt;
 &lt;Route path='/contact' component={Contact} /&gt;  // renders null
 &lt;Route component={Always} /&gt;                   // renders &lt;Always/&gt;
+
+// v5.1+ alternative to &lt;Route path="/about" component={About} /&gt;
+&lt;Route path="/about"&gt;
+  &lt;About /&gt;
+&lt;/Route&gt;
 </code></pre>
                 </section>
                 <section style="padding: 0; margin: 0;"><pre style="padding: 0; margin: 0;"><code class="js" style="max-height: none;">import React from 'react';
@@ -545,9 +550,9 @@ const App = () => (
                     <div style="position: relative">
                         <p class="small left">&lt;NavLink <span class="router-red">exact</span>&gt; and &lt;NavLink <span class="router-red">strict</span>&gt;</p>
                         <pre><code class="no-highlight" data-noescape>&lt;NavLink <span class="router-red">exact</span> to="/"&gt;Home&lt;/NavLink&gt;
-&lt;Route <span class="router-red">exact</span> to="/"&gt;Home&lt;/NavLink&gt;</code></pre>
+&lt;Route <span class="router-red">exact</span> path="/"&gt;Home&lt;/NavLink&gt;</code></pre>
                         <pre><code class="no-highlight" data-noescape>&lt;NavLink <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;
-&lt;Route <span class="router-red">strict</span> to="/about/"&gt;About&lt;/NavLink&gt;</code></pre>
+&lt;Route <span class="router-red">strict</span> path="/about/"&gt;About&lt;/NavLink&gt;</code></pre>
                         <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8013/" target="_blank">Example #13</a></p>
                     </div>
                 </section>
@@ -827,6 +832,32 @@ export default withRouter(ShowMatchUseHistory);</code></pre>
                     <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8022/" target="_blank">Example #22</a></p>
                 </div>
                 </section>
+
+                <section>
+                    <p>React Router API Hooks</p>
+                    <div style="position: relative">
+                        <pre><code class="js" style="max-height: none;">import { useRouteMatch, useLocation, useHistory, useParams } from 'react-router-dom';
+
+const DeepComponent = () => {    // not a "route component", far deep from Route
+    const match = useRouteMatch();
+    const location = useLocation();
+    const history = useHistory();
+    const params = useParams();
+
+    return (
+        &lt;&gt;
+            &lt;div&gt;match.path: {match.path}&lt;/div&gt;
+            &lt;div&gt;location.pathname: {location.pathname}&lt;/div&gt;
+            &lt;div&gt;params.answer: {params.answer}&lt;/div&gt;
+    
+            &lt;button onClick={() => history.push('/home')}&gt;Go Home&lt;/button&gt;
+        &lt;/&gt;
+    );
+};</code></pre>
+                    <!-- <p class="right link-over-code"><a class="small" href="http://127.0.0.1:8022/" target="_blank">Example #22</a></p> -->
+                </div>
+                </section>
+
                 <section>
                     <p>Transition Animation</p>
                     <div style="position: relative">
